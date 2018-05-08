@@ -13,7 +13,7 @@ import { compose } from 'redux';
 
 import { addTodo } from 'containers/TodoPage/actions';
 import PageHeader from 'containers/PageHeader';
-import TodoForm from 'components/Forms/TodoForm';
+import TodoForm from 'containers/TodoForm';
 import injectReducer from 'utils/injectReducer';
 import makeSelectAddPage from './selectors';
 import reducer from './reducer';
