@@ -30,7 +30,7 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
           <meta name="description" content="Description of AddPage" />
         </Helmet>
 
-        <PageHeader title={'Add new thing'} previous={'hehe'} />
+        <PageHeader title={'Add new todo'} previous={'hehe'} />
         <TodoForm onSubmit={this.props.onSubmitForm} />
       </Wrapper>
     );
@@ -48,7 +48,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: (e) => dispatch(addTodo()),
+    onSubmitForm: (todo) => dispatch(addTodo(todo)),
   };
 }
 

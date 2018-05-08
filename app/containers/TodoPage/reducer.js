@@ -22,7 +22,7 @@ const initialState = fromJS({
     {
       id: uid(),
       type: 'personal',
-      name: 'DogePosting',
+      name: 'Postowanie śmiesznych psów',
       completed: false,
     },
     {

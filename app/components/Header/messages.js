@@ -8,7 +8,7 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   name: {
     id: 'todoapp.components.Header.name',
-    defaultMessage: 'Your Things',
+    defaultMessage: 'Your Todos',
   },
   features: {
     id: 'todoapp.components.Header.features',
