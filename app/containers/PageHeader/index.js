@@ -6,6 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import BackIcon from './BackIcon';
 import Wrap from './Wrap';
@@ -14,7 +15,9 @@ export class PageHeader extends React.PureComponent { // eslint-disable-line rea
   render() {
     return (
       <Wrap>
-        <BackIcon name="back" />
+        <Link to="/">
+          <BackIcon name="back" />
+        </Link>
         {this.props.title}
       </Wrap>
     );
