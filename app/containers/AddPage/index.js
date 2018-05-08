@@ -18,11 +18,13 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectAddPage from './selectors';
 import reducer from './reducer';
 
+import Wrapper from './Wrapper';
+
 
 export class AddPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div>
+      <Wrapper>
         <Helmet>
           <title>AddPage</title>
           <meta name="description" content="Description of AddPage" />
@@ -30,8 +32,7 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
 
         <PageHeader title={'Add new thing'} previous={'hehe'} />
         <TodoForm onSubmit={this.props.onSubmitForm} />
-
-      </div>
+      </Wrapper>
     );
   }
 }
