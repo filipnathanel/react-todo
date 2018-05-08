@@ -5,7 +5,6 @@ import NormalWrap from 'components/Wrap';
 const Wrap = styled(NormalWrap)`
   padding-top: 3.5vw;
   padding-bottom: 3.5vw;
-  background-color:red;
 `;
 
 export default Wrap;
