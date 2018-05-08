@@ -5,6 +5,7 @@
  */
 
 import { fromJS } from 'immutable';
+import uid from 'uid';
 import {
   LOAD_TODOS_SUCCESS,
   LOAD_TODOS,
@@ -17,7 +18,20 @@ import {
 const initialState = fromJS({
   loading: false,
   error: false,
-  todos: [{id:1},{id:2}],
+  todos: [
+    {
+      id: uid(),
+      type: 'personal',
+      name: 'DogePosting',
+      completed: false,
+    },
+    {
+      id: uid(),
+      type: 'business',
+      name: 'Spotkanie pod krawatem',
+      completed: false,
+    },
+  ],
 });
 
 function todoPageReducer(state = initialState, action) {
