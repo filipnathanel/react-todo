@@ -22,6 +22,11 @@ class Select extends React.PureComponent {
 
     this.optionClickHandler = this.optionClickHandler.bind(this);
     this.toggleOpen = this.toggleOpen.bind(this);
+    this.documentClickHandler = this.documentClickHandler.bind(this);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.documentClickHandler);
   }
 
   optionClickHandler({ value, label }) {
@@ -33,13 +38,25 @@ class Select extends React.PureComponent {
     this.setState((prevState) => ({
       open: !prevState.open,
     }));
+    if (!this.state.active) {
+      document.addEventListener('click', this.documentClickHandler);
+    } else {
+      document.removeEventListener('click', this.documentClickHandler);
+    }
+  }
+
+  documentClickHandler(e) {
+    if (!this.wrapperRef.contains(e.target)) {
+      this.setState({ open: false });
+      document.removeEventListener('click', this.documentClickHandler);
+    }
   }
 
   render() {
     const { id, options, placeholder } = this.props;
     const { value, label, open } = this.state;
     return (
-      <div>
+      <div ref={(node) => { this.wrapperRef = node }}>
         <Label onClick={this.toggleOpen}>{value.length > 0 ? label : placeholder}</Label>
         <input
           style={{ display: 'none' }}
