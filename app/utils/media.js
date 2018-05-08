@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const media = {
   mobile: (...args) => css`
-    @media (max-width: 420px) {
+    @media (max-width: 481px) {
       ${css(...args)}
     }
   `,
