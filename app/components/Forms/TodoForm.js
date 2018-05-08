@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Wrap from 'components/Wrap';
 import Form from 'components/Form';
@@ -10,27 +11,41 @@ import Input from 'components/Input';
 const TodoForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
+    const formData = new FormData(e.target);
+    const data = {
+      name: formData.get('name'),
+      type: formData.get('type'),
+      place: formData.get('place'),
+    };
+
+    console.log(data)
+    
+    props.onSubmit(data);
   };
 
   return (
-    <Wrap>
+    <Wrap style={{ marginTop: '10%' }}>
       <Form onSubmit={submitHandler}>
         <Select
-          id="type"
+          name="type"
           placeholder="Select Type"
           options={[
             { value: 'personal', label: 'Personal' },
             { value: 'business', label: 'Business' },
           ]}
         />
-        <Input id="name" type="text" placeholder="What are you going to do?" />
-        <Input id="place" type="text" placeholder="Where?" />
+        <Input name="name" type="text" placeholder="What are you going to do?" />
+        <Input name="place" type="text" placeholder="Where?" />
         <FormButton>Add Todo</FormButton>
 
       </Form>
     </Wrap>
   );
 };
+
+TodoForm.propTypes = {
+  onSubmit: PropTypes.func,
+}
 
 export default TodoForm;
