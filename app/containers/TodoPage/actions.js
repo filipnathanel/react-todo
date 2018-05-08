@@ -52,8 +52,6 @@ export function repoLoadingError(error) {
   };
 }
 
-
-export function toggleTodo(id) {
   return {
     type: TOGGLE_TODO,
     payload: {
@@ -62,8 +60,16 @@ export function toggleTodo(id) {
   };
 }
 
-export function removeTodo() {
+export function removeTodo(id) {
   return {
     type: REMOVE_TODO,
+    id,
+  };
+}
+
+export function toggleTodo(id) {
+  return {
+    type: TOGGLE_TODO,
+    id,
   };
 }

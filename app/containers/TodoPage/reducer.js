@@ -55,7 +55,7 @@ function todoPageReducer(state = initialState, action) {
       return state;
     case TOGGLE_TODO:
       return state.update('todos', (todos) =>
-          todos.map((todo) => todo.get('id') === action.payload.id
+          todos.map((todo) => todo.get('id') === action.id
             ? todo.update('completed', (completed) => !completed)
             : todo
           )
