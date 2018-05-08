@@ -50,7 +50,8 @@ function todoPageReducer(state = initialState, action) {
         .set('error', action.error)
         .set('loading', false);
     case ADD_TODO:
-      return state;
+      return state.update('todos', (todos) =>
+        todos.push(action.todo));
     case REMOVE_TODO:
       return state;
     case TOGGLE_TODO:
