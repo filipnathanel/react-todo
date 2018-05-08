@@ -36,7 +36,7 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
     };
 
     return (
-      <div>
+      <div style={{position:'relative'}}>
         <Helmet>
           <title>TodoPage</title>
           <meta name="description" content="Description of TodoPage" />

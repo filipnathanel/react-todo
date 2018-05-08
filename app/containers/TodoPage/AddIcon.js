@@ -11,8 +11,8 @@ const AddButton = styled(NormalIcon)`
   padding: 15px;
   border-radius:25px;
   position:absolute;
-  bottom:25px;
-  right:3.5vw;
+  bottom:-25px;
+  right:3.5%;
   box-shadow: 0px 0px 10px #ddd;
 `;
 

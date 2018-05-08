@@ -18,14 +18,14 @@ import Footer from 'components/Footer';
 import media from 'utils/media';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
+  max-width: calc( 481px + 3.5vw * 2);
   margin: 0 auto;
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 0 16px;
   flex-direction: column;
 
-  ${media.tablet`
+  ${media.mobile`
     max-width:100%;
     padding:0;
   `}
@@ -46,7 +46,6 @@ export default function App() {
         <Route path="/edit/:id" component={AddPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
     </AppWrapper>
   );
 }
