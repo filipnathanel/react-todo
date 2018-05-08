@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import { addTodo } from 'containers/TodoPage/actions';
 import PageHeader from 'containers/PageHeader';
 import TodoForm from 'components/Forms/TodoForm';
 import injectReducer from 'utils/injectReducer';
@@ -28,7 +29,7 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
         </Helmet>
 
         <PageHeader title={'Add new thing'} previous={'hehe'} />
-        <TodoForm />
+        <TodoForm onSubmit={this.props.onSubmitForm} />
 
       </div>
     );
@@ -36,7 +37,8 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
 }
 
 AddPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -45,7 +47,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onSubmitForm: (e) => dispatch(addTodo()),
   };
 }
 
