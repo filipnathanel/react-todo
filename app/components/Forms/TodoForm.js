@@ -2,8 +2,10 @@ import React from 'react';
 
 import Wrap from 'components/Wrap';
 import Form from 'components/Form';
+import FormButton from 'components/Form/FormButton';
 import Select from 'components/Select';
 import Input from 'components/Input';
+
 
 const TodoForm = (props) => {
   const submitHandler = (e) => {
@@ -24,8 +26,7 @@ const TodoForm = (props) => {
         />
         <Input id="name" type="text" placeholder="What are you going to do?" />
         <Input id="place" type="text" placeholder="Where?" />
-        <button type="submit">
-        AddTodo</button>
+        <FormButton>Add Todo</FormButton>
 
       </Form>
     </Wrap>
