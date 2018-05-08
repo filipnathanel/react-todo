@@ -38,6 +38,7 @@ class Select extends React.PureComponent {
     this.setState((prevState) => ({
       open: !prevState.open,
     }));
+
     if (!this.state.active) {
       document.addEventListener('click', this.documentClickHandler);
     } else {
@@ -53,15 +54,15 @@ class Select extends React.PureComponent {
   }
 
   render() {
-    const { id, options, placeholder } = this.props;
+    const { name, options, placeholder } = this.props;
     const { value, label, open } = this.state;
     return (
-      <div ref={(node) => { this.wrapperRef = node }}>
-        <Label onClick={this.toggleOpen}>{value.length > 0 ? label : placeholder}</Label>
+      <div style={{ position: 'relative' }} ref={(node) => { this.wrapperRef = node; }}>
+        <Label open={open} onClick={this.toggleOpen}>{value.length > 0 ? label : placeholder}</Label>
         <input
           style={{ display: 'none' }}
           type="text"
-          id={id}
+          name={name}
           value={this.state.value}
         />
         <Options
