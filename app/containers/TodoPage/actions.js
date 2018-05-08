@@ -55,10 +55,14 @@ export function repoLoadingError(error) {
   };
 }
 
+export function addTodo({ name, type }) {
   return {
-    type: TOGGLE_TODO,
-    payload: {
-      id,
+    type: ADD_TODO,
+    todo: {
+      id: uid(),
+      completed: false,
+      name,
+      type,
     },
   };
 }
