@@ -4,12 +4,15 @@
  *
  */
 
+import uid from 'uid';
+
 import {
   LOAD_TODOS,
   LOAD_TODOS_SUCCESS,
   LOAD_TODOS_ERROR,
-  TOGGLE_TODO,
+  ADD_TODO,
   REMOVE_TODO,
+  TOGGLE_TODO,
 } from './constants';
 
 /**
