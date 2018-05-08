@@ -78,7 +78,7 @@ export class TodoListItem extends React.Component { // eslint-disable-line react
         {item.name}
         <OffscreenMenu active={this.state.active} onClick={(e) => { e.stopPropagation(); }}>
           <Link to={`edit/${item.id}`}>
-            <ButtonIcon name="edit"/>
+            <ButtonIcon name="edit" />
           </Link>
           <ButtonIcon name="tick" active={item.completed} onClick={this.toggleHandler} />
           <ButtonIcon name="delete" onClick={this.removeHandler} />
