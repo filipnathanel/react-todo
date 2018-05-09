@@ -5,9 +5,11 @@ import styled from 'styled-components';
 function Wrapper(props) {
   return (
     <div
+      role="button"
       className={`${props.className} ${props.active ? 'active' : ''}`}
       onClick={props.onClick}
       ref={props.setRef}
+      tabIndex={props.index}
     >
       {Children.toArray(props.children)}
     </div>
@@ -20,6 +22,7 @@ Wrapper.propTypes = {
   active: PropTypes.bool,
   onClick: PropTypes.func,
   setRef: PropTypes.func,
+  index: PropTypes.number,
 };
 
 const StyledWrapper = styled(Wrapper)`
@@ -29,7 +32,11 @@ const StyledWrapper = styled(Wrapper)`
   align-items: space-between;
   cursor:pointer;
   transition: transform 0.3s;
-  padding: 0 3.5vw;
+  padding: 0 3.5%;
+
+  &:focus{
+    outline:none;
+  }
 
   &.active{
     transform: translatex(-164px);

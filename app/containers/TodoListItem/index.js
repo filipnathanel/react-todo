@@ -65,17 +65,18 @@ export class TodoListItem extends React.Component { // eslint-disable-line react
   }
 
   render() {
-    const item = this.props.item;
+    const { item, index } = this.props;
 
     const content = (
       <Wrapper
         onClick={this.clickHandler}
         active={this.state.active}
         setRef={(node) => { this.wrapperRef = node; }}
+        index={index}
       >
         <TypeIcon name={item.type} />
         <Content>
-          <Name>
+          <Name completed={item.completed}>
             {item.name}
           </Name>
           <Place>
@@ -101,6 +102,7 @@ export class TodoListItem extends React.Component { // eslint-disable-line react
 
 TodoListItem.propTypes = {
   item: PropTypes.object,
+  index: PropTypes.number,
   onToggle: PropTypes.func,
   onRemove: PropTypes.func,
 };
