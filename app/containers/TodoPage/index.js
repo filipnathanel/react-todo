@@ -18,7 +18,7 @@ import Filters from 'components/Filters';
 import Search from 'components/Search';
 import TodosList from 'components/TodosList';
 
-import { makeSelectTodos } from './selectors';
+import { makeSelectTodos, makeSelectVisibleTodos } from './selectors';
 import reducer from './reducer';
 import AddIcon from './AddIcon';
 
@@ -31,10 +31,10 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
   }
 
   render() {
-    const { todos } = this.props;
+    const { todos, visibleTodos } = this.props;
 
     const todosListProps = {
-      todos,
+      todos: visibleTodos,
     };
 
     return (
@@ -43,7 +43,7 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
           <title>TodoPage</title>
           <meta name="description" content="Description of TodoPage" />
         </Helmet>
-        <Header />
+        <Header todos={todos} />
         <Search />
         <Filters />
         <TodosList {...todosListProps} />
@@ -61,10 +61,15 @@ TodoPage.propTypes = {
     PropTypes.bool,
     PropTypes.array,
   ]),
+  visibleTodos: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.array,
+  ]),
 };
 
 const mapStateToProps = createStructuredSelector({
-  todos: makeSelectTodos(),
+  todos: makeSelectTodos(), // all todos
+  visibleTodos: makeSelectVisibleTodos(), // search and filters applied
 });
 
 function mapDispatchToProps(dispatch) {
