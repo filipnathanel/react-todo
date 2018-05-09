@@ -1,5 +1,9 @@
 import { createSelector } from 'reselect';
-
+import {
+  SHOW_ALL,
+  SHOW_ACTIVE,
+  SHOW_COMPLETED,
+} from 'containers/TodoPage/constants';
 /**
  * Direct selector to the todoPage state domain
  */
@@ -25,6 +29,11 @@ const makeSelectActiveFilter = () => createSelector(
   (todosState) => todosState.get('filter')
 );
 
+const makeSelectSearch = () => createSelector(
+  selectTodosDomain,
+  (todosState) => todosState.get('search')
+);
+
 const selectIsFilterActive = createSelector(
   selectFilterFromProps,
   makeSelectActiveFilter(),
@@ -35,6 +44,34 @@ const selectIsFilterActive = createSelector(
 const makeSelectTodos = () => createSelector(
   selectTodosDomain,
   (todosState) => todosState.get('todos').toJS()
+);
+
+const makeSelectFilteredTodos = () => createSelector(
+  makeSelectTodos(),
+  makeSelectActiveFilter(),
+  (todos, activeFilter) => {
+    switch (activeFilter) {
+      case SHOW_ALL:
+        return todos;
+      case SHOW_ACTIVE:
+        return todos.filter((todo) => !todo.completed);
+      case SHOW_COMPLETED:
+        return todos.filter((todo) => todo.completed);
+      default:
+        throw new Error('unknow Filter');
+    }
+  }
+);
+
+const makeSelectVisibleTodos = () => createSelector(
+  makeSelectFilteredTodos(),
+  makeSelectSearch(),
+  (todos, search) => {
+    if (search.length > 0) {
+      return todos.filter((todo) => todo.name.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+    }
+    return todos;
+  }
 );
 
 const getActiveTodo = () => createSelector(
@@ -60,5 +97,6 @@ export {
   makeSelectTodos,
   getActiveTodo,
   selectIsFilterActive,
+  makeSelectVisibleTodos,
 };
 
