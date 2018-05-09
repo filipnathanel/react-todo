@@ -78,10 +78,10 @@ export function editTodo(todo) {
   };
 }
 
-export function removeTodo(id) {
+export function removeTodo(todo) {
   return {
     type: REMOVE_TODO,
-    id,
+    todo,
   };
 }
 
@@ -99,3 +99,10 @@ export function setVisibilityFilter(filter) {
   };
 }
 
+
+export function setSearch(needle) {
+  return {
+    type: SET_SEARCH,
+    needle,
+  };
+}
