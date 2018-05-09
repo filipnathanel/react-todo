@@ -15,9 +15,7 @@ import {
   REMOVE_TODO,
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
-  SHOW_ALL,
-  SHOW_ACTIVE,
-  SHOW_COMPLETED,
+  SET_SEARCH,
 } from './constants';
 
 /**
@@ -101,8 +99,3 @@ export function setVisibilityFilter(filter) {
   };
 }
 
-export const VisibilityFilters = {
-  SHOW_ALL,
-  SHOW_ACTIVE,
-  SHOW_COMPLETED,
-};

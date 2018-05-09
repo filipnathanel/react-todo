@@ -16,3 +16,5 @@ export const SET_VISIBILITY_FILTER = 'todo/TodoPage/SET_VISIBILITY_FILTER';
 export const SHOW_ALL = 'todo/TodoPage/filter/ALL';
 export const SHOW_COMPLETED = 'todo/TodoPage/filter/COMPLETED';
 export const SHOW_ACTIVE = 'todo/TodoPage/filter/ACTIVE';
+
+export const SET_SEARCH = 'todo/TodoPage/Search/SET_SEARCH';
