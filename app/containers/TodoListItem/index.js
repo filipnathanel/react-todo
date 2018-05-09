@@ -14,6 +14,9 @@ import ListItem from 'components/ListItem';
 import TypeIcon from './TypeIcon';
 import ButtonIcon from './ButtonIcon';
 import Wrapper from './Wrapper';
+import Content from './Content';
+import Name from './Name';
+import Place from './Place';
 import OffscreenMenu from './OffscreenMenu';
 import { toggleTodo, removeTodo } from '../TodoPage/actions';
 
@@ -47,11 +50,7 @@ export class TodoListItem extends React.Component { // eslint-disable-line react
 
 
   toggleHandler() {
-      this.props.onToggle(this.props.item.id);
-  }
-
-  uncompleteHandler() {
-    this.props.onUncomplete(this.props.item);
+    this.props.onToggle(this.props.item.id);
   }
 
   removeHandler() {
@@ -75,7 +74,14 @@ export class TodoListItem extends React.Component { // eslint-disable-line react
         setRef={(node) => { this.wrapperRef = node; }}
       >
         <TypeIcon name={item.type} />
-        {item.name}
+        <Content>
+          <Name>
+            {item.name}
+          </Name>
+          <Place>
+            {item.place}
+          </Place>
+        </Content>
         <OffscreenMenu active={this.state.active} onClick={(e) => { e.stopPropagation(); }}>
           <Link to={`edit/${item.id}`}>
             <ButtonIcon name="edit" />
