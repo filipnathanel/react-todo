@@ -13,10 +13,6 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           <FlexContainer w={2 / 3}>
             <H1>Your Todos</H1>
           </FlexContainer>
-          <FlexContainer w={1 / 3}>
-            Personal
-            Business
-          </FlexContainer>
         </Wrap>
       </BgContainer>
     );

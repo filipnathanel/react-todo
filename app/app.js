@@ -63,14 +63,18 @@ const history = createHistory();
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
-  MOUNT_NODE
-);
+const render = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </Provider>,
+    MOUNT_NODE
+  );
+};
+
+render();
 
 if (module.hot) {
   // Hot reloadable React components and translation json files
@@ -78,6 +82,7 @@ if (module.hot) {
   // have to be constants at compile-time
   module.hot.accept(['containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    render();
   });
 }
 
