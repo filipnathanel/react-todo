@@ -32,6 +32,10 @@ class TodoForm extends React.PureComponent {
       place: formData.get('place'),
     };
 
+    if (this.props.todo) {
+      data.id = this.props.todo.id;
+    }
+
     if (data.name.length < 1) {
       this.setState({
         error: 'You need to write what you are going to do.',
@@ -86,7 +90,10 @@ class TodoForm extends React.PureComponent {
 TodoForm.propTypes = {
   onSubmit: PropTypes.func,
   dispatch: PropTypes.func,
-  todo: PropTypes.object,
+  todo: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
 };
 
 function mapDispatchToProps(dispatch) {

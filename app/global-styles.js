@@ -21,7 +21,7 @@ svg:not(:root){
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: #d4e1ee;
     min-height: 100%;
     min-width: 100%;
   }

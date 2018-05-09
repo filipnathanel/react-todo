@@ -48,9 +48,13 @@ AddPage.propTypes = {
 };
 
 export function mapDispatchToProps(dispatch, props) {
-  const addOrEditTodo = props.todo ? editTodo : addTodo;
   return {
-    onSubmitForm: (todo) => dispatch(addOrEditTodo(todo)),
+    onSubmitForm: (todo) => {
+      const addOrEditTodo = props.match.params.id && props.match.params.id.length > 0
+        ? editTodo
+        : addTodo;
+      return dispatch(addOrEditTodo(todo));
+    },
   };
 }
 

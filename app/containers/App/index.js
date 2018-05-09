@@ -14,8 +14,8 @@ import { Switch, Route } from 'react-router-dom';
 import TodoPage from 'containers/TodoPage/Loadable';
 import AddPage from 'containers/AddPage';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Footer from 'components/Footer';
 import media from 'utils/media';
+import * as colors from 'utils/colors';
 
 const AppWrapper = styled.div`
   max-width: calc( 481px + 3.5vw * 2);
@@ -24,6 +24,7 @@ const AppWrapper = styled.div`
   min-height: 100vh;
   padding: 0 16px;
   flex-direction: column;
+  // background-color:${colors.lightGray};
 
   ${media.mobile`
     max-width:100%;
@@ -49,3 +50,4 @@ export default function App() {
     </AppWrapper>
   );
 }
+
