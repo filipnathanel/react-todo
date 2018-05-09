@@ -11,18 +11,20 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { addTodo } from 'containers/TodoPage/actions';
+import { addTodo, editTodo } from 'containers/TodoPage/actions';
 import PageHeader from 'containers/PageHeader';
 import TodoForm from 'containers/TodoForm';
 import injectReducer from 'utils/injectReducer';
-import makeSelectAddPage from './selectors';
-import reducer from './reducer';
+import { getActiveTodo } from 'containers/TodoPage/selectors';
+import reducer from 'containers/TodoPage/reducer';
 
 import Wrapper from './Wrapper';
 
 
 export class AddPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const { todo, onSubmitForm } = this.props;
+
     return (
       <Wrapper>
         <Helmet>
@@ -31,7 +33,7 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
         </Helmet>
 
         <PageHeader title={'Add new todo'} previous={'hehe'} />
-        <TodoForm onSubmit={this.props.onSubmitForm} />
+        <TodoForm todo={todo} onSubmit={onSubmitForm} />
       </Wrapper>
     );
   }
@@ -39,22 +41,26 @@ export class AddPage extends React.PureComponent { // eslint-disable-line react/
 
 AddPage.propTypes = {
   onSubmitForm: PropTypes.func.isRequired,
-
+  todo: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.object,
+  ]),
 };
 
-const mapStateToProps = createStructuredSelector({
-  addpage: makeSelectAddPage(),
-});
-
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch, props) {
+  const addOrEditTodo = props.todo ? editTodo : addTodo;
   return {
-    onSubmitForm: (todo) => dispatch(addTodo(todo)),
+    onSubmitForm: (todo) => dispatch(addOrEditTodo(todo)),
   };
 }
 
+const mapStateToProps = createStructuredSelector({
+  todo: getActiveTodo(),
+});
+
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'addPage', reducer });
+const withReducer = injectReducer({ key: 'todos', reducer });
 
 export default compose(
   withReducer,
