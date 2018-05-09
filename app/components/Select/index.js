@@ -5,10 +5,21 @@ import PropTypes from 'prop-types';
 import Label from './Label';
 import Options from './Options';
 
-class Select extends React.PureComponent {
+class Select extends React.Component {
 
   static defaultProps = {
     placeholder: 'Select Value',
+  }
+
+  static getDerivedStateFromProps(props, prevState) {
+    const { defaultValue, options } = props;
+    if (defaultValue && defaultValue.length > 0) {
+      return {
+        value: defaultValue,
+        label: options.filter((option) => option.value === defaultValue)[0].label,
+      };
+    }
+    return prevState;
   }
 
   constructor(props) {
@@ -58,12 +69,15 @@ class Select extends React.PureComponent {
     const { value, label, open } = this.state;
     return (
       <div style={{ position: 'relative' }} ref={(node) => { this.wrapperRef = node; }}>
-        <Label open={open} onClick={this.toggleOpen}>{value.length > 0 ? label : placeholder}</Label>
+        <Label
+          open={open}
+          onClick={this.toggleOpen}
+        >{value.length > 0 ? label : placeholder}</Label>
         <input
           style={{ display: 'none' }}
           type="text"
           name={name}
-          value={this.state.value}
+          defaultValue={this.state.value}
         />
         <Options
           options={options}
@@ -77,7 +91,7 @@ class Select extends React.PureComponent {
 }
 
 Select.propTypes = {
-  id: PropTypes.string,
+  name: PropTypes.string,
   options: PropTypes.array,
   placeholder: PropTypes.string,
 };
