@@ -39,11 +39,16 @@ class TodoForm extends React.PureComponent {
     } else {
       this.setState({ error: null });
       this.props.onSubmit(data);
-      this.props.dispatch(push('/'))
+      this.props.dispatch(push('/'));
     }
   }
 
   render() {
+    const { todo } = this.props;
+    const type = todo ? todo.type : undefined;
+    const name = todo ? todo.name : undefined;
+    const place = todo ? todo.place : undefined;
+
     return (
       <Wrap style={{ marginTop: '10%' }}>
         <Form onSubmit={this.submitHandler}>
@@ -54,11 +59,22 @@ class TodoForm extends React.PureComponent {
               { value: 'personal', label: 'Personal' },
               { value: 'business', label: 'Business' },
             ]}
+            defaultValue={type}
           />
-          <Input name="name" type="text" placeholder="What are you going to do?" />
-          <Input name="place" type="text" placeholder="Where?" />
+          <Input
+            name="name"
+            type="text"
+            placeholder="What are you going to do?"
+            defaultValue={name}
+          />
+          <Input
+            name="place"
+            type="text"
+            placeholder="Where?"
+            defaultValue={place}
+          />
           {this.state.error}
-          <FormButton>Add Todo</FormButton>
+          <FormButton>{ todo ? 'Edit Todo' : 'Add Todo' }</FormButton>
 
         </Form>
       </Wrap>
@@ -69,6 +85,8 @@ class TodoForm extends React.PureComponent {
 
 TodoForm.propTypes = {
   onSubmit: PropTypes.func,
+  dispatch: PropTypes.func,
+  todo: PropTypes.object,
 };
 
 function mapDispatchToProps(dispatch) {
