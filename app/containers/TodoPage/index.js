@@ -44,8 +44,8 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
           <meta name="description" content="Description of TodoPage" />
         </Helmet>
         <Header />
-        <Filters />
         <Search />
+        <Filters />
         <TodosList {...todosListProps} />
         <Link to="/add">
           <AddIcon name="add" />

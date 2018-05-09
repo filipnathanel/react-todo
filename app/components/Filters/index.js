@@ -1,6 +1,6 @@
 import React from 'react';
 
-import  { VisibilityFilters } from 'containers/TodoPage/actions';
+import { VisibilityFilters } from 'containers/TodoPage/actions';
 import Wrapper from './Wrapper';
 import Filter from './Filter';
 
