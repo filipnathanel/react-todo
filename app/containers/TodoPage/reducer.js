@@ -16,12 +16,14 @@ import {
   TOGGLE_TODO,
   SET_VISIBILITY_FILTER,
   SHOW_ALL,
+  SET_SEARCH,
 } from './constants';
 
 const initialState = fromJS({
   loading: false,
   error: false,
   filter: SHOW_ALL,
+  search: '',
   todos: [
     {
       id: uid(),
@@ -35,6 +37,20 @@ const initialState = fromJS({
       type: 'business',
       name: 'Spotkanie pod krawatem',
       place: 'Mordor',
+      completed: false,
+    },
+    {
+      id: uid(),
+      type: 'personal',
+      name: 'Prasowanie dywanów',
+      place: 'Dom Kolegów',
+      completed: true,
+    },
+    {
+      id: uid(),
+      type: 'business',
+      name: 'Pojedynek Programistów',
+      place: 'superhacker.dev',
       completed: false,
     },
   ],
@@ -66,7 +82,8 @@ function todoPageReducer(state = initialState, action) {
         )
       );
     case REMOVE_TODO:
-      return state;
+      return state.update('todos', (todos) =>
+        todos.filter((todo) => todo.get('id') !== action.todo.id));
     case TOGGLE_TODO:
       return state.update('todos', (todos) =>
           todos.map((todo) => todo.get('id') === action.id
@@ -76,6 +93,8 @@ function todoPageReducer(state = initialState, action) {
       );
     case SET_VISIBILITY_FILTER:
       return state.set('filter', action.filter);
+    case SET_SEARCH:
+      return state.set('search', action.needle);
     default:
       return state;
   }
