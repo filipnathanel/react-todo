@@ -49,7 +49,6 @@ class Select extends React.Component {
     this.setState((prevState) => ({
       open: !prevState.open,
     }));
-
     if (!this.state.active) {
       document.addEventListener('click', this.documentClickHandler);
     } else {
@@ -65,10 +64,10 @@ class Select extends React.Component {
   }
 
   render() {
-    const { name, options, placeholder } = this.props;
+    const { name, options, placeholder, className } = this.props;
     const { value, label, open } = this.state;
     return (
-      <div style={{ position: 'relative' }} ref={(node) => { this.wrapperRef = node; }}>
+      <div className={className} ref={(node) => { this.wrapperRef = node; }}>
         <Label
           open={open}
           onClick={this.toggleOpen}
@@ -77,7 +76,8 @@ class Select extends React.Component {
           style={{ display: 'none' }}
           type="text"
           name={name}
-          defaultValue={this.state.value}
+          value={value}
+          readOnly
         />
         <Options
           options={options}
@@ -94,6 +94,7 @@ Select.propTypes = {
   name: PropTypes.string,
   options: PropTypes.array,
   placeholder: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default styled(Select)`
