@@ -11,24 +11,30 @@ import {
   LOAD_TODOS,
   LOAD_TODOS_ERROR,
   ADD_TODO,
+  EDIT_TODO,
   REMOVE_TODO,
   TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  SHOW_ALL,
 } from './constants';
 
 const initialState = fromJS({
   loading: false,
   error: false,
+  filter: SHOW_ALL,
   todos: [
     {
       id: uid(),
       type: 'personal',
       name: 'Postowanie śmiesznych psów',
-      completed: false,
+      place: 'Dogecore',
+      completed: true,
     },
     {
       id: uid(),
       type: 'business',
       name: 'Spotkanie pod krawatem',
+      place: 'Mordor',
       completed: false,
     },
   ],
@@ -52,6 +58,13 @@ function todoPageReducer(state = initialState, action) {
     case ADD_TODO:
       return state.update('todos', (todos) =>
         todos.push(fromJS(action.todo)));
+    case EDIT_TODO:
+      return state.update('todos', (todos) =>
+        todos.map((todo) => todo.get('id') === action.todo.id
+          ? todo.merge(action.todo)
+          : todo
+        )
+      );
     case REMOVE_TODO:
       return state;
     case TOGGLE_TODO:
@@ -61,6 +74,8 @@ function todoPageReducer(state = initialState, action) {
             : todo
           )
       );
+    case SET_VISIBILITY_FILTER:
+      return state.set('filter', action.filter);
     default:
       return state;
   }
