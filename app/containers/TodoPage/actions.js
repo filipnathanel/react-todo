@@ -11,8 +11,13 @@ import {
   LOAD_TODOS_SUCCESS,
   LOAD_TODOS_ERROR,
   ADD_TODO,
+  EDIT_TODO,
   REMOVE_TODO,
   TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  SHOW_ALL,
+  SHOW_ACTIVE,
+  SHOW_COMPLETED,
 } from './constants';
 
 /**
@@ -55,7 +60,7 @@ export function repoLoadingError(error) {
   };
 }
 
-export function addTodo({ name, type }) {
+export function addTodo({ name, type, place }) {
   return {
     type: ADD_TODO,
     todo: {
@@ -63,7 +68,15 @@ export function addTodo({ name, type }) {
       completed: false,
       name,
       type,
+      place,
     },
+  };
+}
+
+export function editTodo(todo) {
+  return {
+    type: EDIT_TODO,
+    todo,
   };
 }
 
@@ -80,3 +93,16 @@ export function toggleTodo(id) {
     id,
   };
 }
+
+export function setVisibilityFilter(filter) {
+  return {
+    type: SET_VISIBILITY_FILTER,
+    filter,
+  };
+}
+
+export const VisibilityFilters = {
+  SHOW_ALL,
+  SHOW_ACTIVE,
+  SHOW_COMPLETED,
+};
