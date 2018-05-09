@@ -14,6 +14,8 @@ import { compose } from 'redux';
 
 import injectReducer from 'utils/injectReducer';
 import Header from 'components/Header';
+import Filters from 'components/Filters';
+import Search from 'components/Search';
 import TodosList from 'components/TodosList';
 
 import { makeSelectTodos } from './selectors';
@@ -36,12 +38,14 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
     };
 
     return (
-      <div style={{position:'relative'}}>
+      <div style={{ position: 'relative' }}>
         <Helmet>
           <title>TodoPage</title>
           <meta name="description" content="Description of TodoPage" />
         </Helmet>
-        <Header/>
+        <Header />
+        <Filters />
+        <Search />
         <TodosList {...todosListProps} />
         <Link to="/add">
           <AddIcon name="add" />
@@ -52,7 +56,7 @@ export class TodoPage extends React.PureComponent { // eslint-disable-line react
 }
 
 TodoPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func.isRequired,
   todos: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.array,
