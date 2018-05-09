@@ -16,6 +16,10 @@ run the dev environment
 
 visit http://localhost:3000 on Chrome
 
-The app logic will work on other browser but the styling is a bit off.
+#### Background info
+
+The project is based on react-boilerplate.
+
+I have decided to approach it as if it was an introduction to a serious application that would scale to a large codebase.
 
 Cheers!
